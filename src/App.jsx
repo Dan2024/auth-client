@@ -34,7 +34,10 @@ export default function App() {
 
     fetch("http://localhost:4000/login", opts)
       .then((response) => response.json())
-      .then((response) => setLoginResponse(JSON.stringify(response)))
+      .then((response) => {
+        setLoginResponse(JSON.stringify(response));
+        localStorage.setItem("Authorization", `Bearer ${response.data}`);
+      })
       .catch((err) => console.error(err));
   };
 
